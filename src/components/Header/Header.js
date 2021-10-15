@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Transition } from '@headlessui/react';
 import logo from '../../assets/logo.png';
 import { NavLink } from 'react-router-dom';
+import './Header.css';
 
 const Header = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<div>
-			<nav className="bg-white">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<nav className="bg-white relative z-20">
+				<div className="container mx-auto">
 					<div className="bg-white text-black py-3 ">
 						<div className="flex items-center justify-between">
 							<NavLink to="/home">
@@ -40,12 +41,15 @@ const Header = () => {
 									<NavLink
 										to="/login"
 										className="font-semibold"
+										activeStyle={{
+											color: '#F71843',
+										}}
 									>
 										Login
 									</NavLink>
 									<NavLink
 										to="/register"
-										className="bg-red-500 rounded-full font-semibold text-white px-6 py-1 transition duration-300 ease-in-out hover:bg-red-600 mr-8"
+										className="signup-btn rounded-full text-white px-7 py-2 transition duration-300 ease-in-outmr-8"
 									>
 										Sign Up
 									</NavLink>

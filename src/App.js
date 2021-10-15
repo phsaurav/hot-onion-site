@@ -9,16 +9,20 @@ function App() {
 	return (
 		<div>
 			<Router>
-				<Header></Header>
-				<Switch>
-					<Route exact path="/">
-						<Home></Home>
-					</Route>
-					<Route path="/home">
-						<Home></Home>
-					</Route>
-				</Switch>
-				<Footer></Footer>
+				<div className="flex flex-col justify-between h-screen">
+					<div>
+						<Header></Header>
+						<Switch>
+							<Route exact path="/">
+								<Home></Home>
+							</Route>
+							<Route path="/home">
+								<Home></Home>
+							</Route>
+						</Switch>
+					</div>
+					<Footer></Footer>
+				</div>
 			</Router>
 		</div>
 	);

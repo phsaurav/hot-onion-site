@@ -5,12 +5,12 @@ import './Footer.css';
 const Footer = () => {
 	return (
 		<div>
-			<div className="absolute bottom-0 w-screen">
-				<footer className="text-white body-font dark-gray">
-					<div className="container px-5 py-20 md:py-24 mx-auto flex justify-between md:items-center md:flex-row md:flex-nowrap flex-wrap flex-col">
+			<div className=" w-full mt-10">
+				<footer className="text-white body-font dark-gray static bottom-0">
+					<div className="container px-5 py-16 md:py-16 mx-auto flex justify-between md:items-center md:flex-row md:flex-nowrap flex-wrap flex-col">
 						<div className="w-64  md:mx-0 mx-auto flex justify-center md:justify-start">
 							<img
-								className="h-8 md:mb-32"
+								className="h-8 md:mb-28"
 								src={logo}
 								alt="logo"
 							/>

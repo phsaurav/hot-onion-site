@@ -1,0 +1,12 @@
+.search-btn{
+	background-color: #F81A43;
+}
+.search-btn:hover{
+	background-color: #ff2f59;
+}
+
+.search-btn:focus{
+	border-bottom: 1px solid white;
+	border-top: 1px solid white;
+	background-color: #ff2f59;
+}
