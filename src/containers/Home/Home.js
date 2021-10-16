@@ -7,6 +7,7 @@ import Lunch from './Lunch/Lunch';
 import Dinner from './Dinner/Dinner';
 import Search from './Search/Search';
 import useMeals from '../../hooks/useMeals';
+import About from './About/About';
 
 const Home = () => {
 	const [meals] = useMeals();
@@ -44,6 +45,7 @@ const Home = () => {
 					<Search displayMeals={displayMeals}></Search>
 				</Route>
 			</Switch>
+			<About></About>
 		</div>
 	);
 };
