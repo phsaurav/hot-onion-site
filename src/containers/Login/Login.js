@@ -11,6 +11,7 @@ const Login = () => {
 				src={bg}
 				alt="Signup Background"
 				className="fixed bottom-0 bg-no-repeat w-screen"
+				style={{ zIndex: '-5' }}
 			/>
 			<Link to="/home">
 				<button

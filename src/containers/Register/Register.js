@@ -6,11 +6,12 @@ import { MdClose } from 'react-icons/md';
 
 const Register = () => {
 	return (
-		<div className="w-full h-full fixed block top-0 left-0 bg-white  z-50">
+		<div className="w-full h-full fixed block top-0 left-0 bg-white  z-30">
 			<img
 				src={bg}
 				alt="Signup Background"
 				className="fixed bottom-0 bg-no-repeat w-screen"
+				style={{ zIndex: '-5' }}
 			/>
 			<Link to="/home">
 				<button
@@ -24,7 +25,7 @@ const Register = () => {
 			<div className="flex flex-col justify-center items-center h-screen">
 				<img src={logo} alt="Logo" className="h-20" />
 
-				<form className="mt-12 mb-96">
+				<form className="mt-12 mb-40">
 					<input
 						type="text"
 						placeholder="Name"
