@@ -3,8 +3,10 @@ import { Transition } from '@headlessui/react';
 import logo from '../../assets/logo.png';
 import { NavLink } from 'react-router-dom';
 import './Header.css';
+import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
+	const { user, logOut } = useAuth();
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<div>
@@ -37,22 +39,38 @@ const Header = () => {
 											/>
 										</svg>
 									</NavLink>
-									{/* <!-- Sign In / Register      --> */}
-									<NavLink
-										to="/login"
-										className="font-semibold"
-										activeStyle={{
-											color: '#F71843',
-										}}
-									>
-										Login
-									</NavLink>
-									<NavLink
-										to="/register"
-										className="signup-btn rounded-full text-white px-7 py-2 transition duration-300 ease-in-outmr-8"
-									>
-										Sign Up
-									</NavLink>
+									{user.displayName ? (
+										<div className="flex items-center">
+											<p className="font-semibold">
+												{user.displayName}
+											</p>
+											<button
+												onClick={logOut}
+												className="signup-btn rounded-full text-white px-7 py-2 ml-5 transition duration-300 ease-in-outmr-8"
+											>
+												Sign Out
+											</button>
+										</div>
+									) : (
+										<div className="flex items-center">
+											{' '}
+											<NavLink
+												to="/login"
+												className="font-semibold"
+												activeStyle={{
+													color: '#F71843',
+												}}
+											>
+												Login
+											</NavLink>
+											<NavLink
+												to="/register"
+												className="signup-btn rounded-full text-white px-7 py-2 ml-5  transition duration-300 ease-in-outmr-8"
+											>
+												Sign Up
+											</NavLink>
+										</div>
+									)}
 								</div>
 							</div>
 						</div>
@@ -138,18 +156,35 @@ const Header = () => {
 								ref={ref}
 								className="px-2 pt-2 pb-3 space-y-0 sm:px-3 text-center"
 							>
-								<NavLink
-									to="/login"
-									className="font-semibold text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base "
-								>
-									Login
-								</NavLink>
-								<NavLink
-									to="/register"
-									className="font-semibold text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base "
-								>
-									Sign Up
-								</NavLink>
+								{user.displayName ? (
+									<div className="flex items-center flex-col">
+										<p className="font-semibold text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base w-full">
+											{user.displayName}
+										</p>
+										<button
+											onClick={logOut}
+											className="font-semibold text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base w-full"
+										>
+											Sign Out
+										</button>
+									</div>
+								) : (
+									<div className="flex items-center flex-col">
+										{' '}
+										<NavLink
+											to="/login"
+											className="font-semibold text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base w-full"
+										>
+											Login
+										</NavLink>
+										<NavLink
+											to="/register"
+											className="font-semibold text-gray-900 hover:bg-gray-200 block px-3 py-2 rounded-md text-base w-full"
+										>
+											Sign Up
+										</NavLink>
+									</div>
+								)}
 							</div>
 						</div>
 					)}

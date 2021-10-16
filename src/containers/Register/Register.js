@@ -1,10 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import bg from '../../assets/signup-bg.png';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 import { MdClose } from 'react-icons/md';
+import useFirebase from '../../hooks/useFirebase';
+import { useLocation, useHistory } from 'react-router-dom';
 
 const Register = () => {
+	const {
+		setError,
+		error,
+		createNewUser,
+		setEmail,
+		setPassword,
+		setName,
+		password,
+	} = useFirebase();
+	const location = useLocation();
+	const history = useHistory();
+	const redirect_uri = location.state?.from || '/home';
+
+	const [rePass, setRePass] = useState('');
+
+	const handleSignUp = (e) => {
+		e.preventDefault();
+
+		if (password.length <= 6) {
+			setError('Password Must be atleast 6 character long');
+			return;
+		}
+		if (!/^(?=.*[0-9])/.test(password)) {
+			setError('Password Must have one nubmer!');
+			return;
+		}
+		if (password !== rePass) {
+			setError("Password Doesn't match!!");
+			return;
+		}
+		setError('');
+
+		createNewUser();
+		history.push(redirect_uri);
+	};
+	const handleEmailChange = (e) => {
+		setEmail(e.target.value);
+	};
+	const handlePasswordChange = (e) => {
+		setPassword(e.target.value);
+	};
+	const handleRePassChange = (e) => {
+		setRePass(e.target.value);
+	};
+	const handleNameChange = (e) => {
+		setName(e.target.value);
+	};
 	return (
 		<div className="w-full h-full fixed block top-0 left-0 bg-white  z-30">
 			<img
@@ -25,28 +74,32 @@ const Register = () => {
 			<div className="flex flex-col justify-center items-center h-screen">
 				<img src={logo} alt="Logo" className="h-20" />
 
-				<form className="mt-12 mb-40">
+				<form className="mt-12 mb-40" onSubmit={handleSignUp}>
 					<input
 						type="text"
 						placeholder="Name"
+						onBlur={handleNameChange}
 						className="text-sm w-80 bg-gray-100 flex flex-row justify-between h-12 pl-5 rounded-lg my-5"
 						style={{ outline: 'none' }}
 					/>
 					<input
 						type="text"
 						placeholder="Email"
+						onBlur={handleEmailChange}
 						className="text-sm w-80 bg-gray-100 flex flex-row justify-between h-12 pl-5 rounded-lg my-5"
 						style={{ outline: 'none' }}
 					/>
 					<input
 						type="password"
 						placeholder="Password"
+						onBlur={handlePasswordChange}
 						className="text-sm w-80 bg-gray-100 flex flex-row justify-between h-12 pl-5 rounded-lg my-5"
 						style={{ outline: 'none' }}
 					/>
 					<input
 						type="password"
 						placeholder="Confirm Password"
+						onBlur={handleRePassChange}
 						className="text-sm w-80 bg-gray-100 flex flex-row justify-between h-12 pl-5 rounded-lg my-5"
 						style={{ outline: 'none' }}
 					/>
@@ -65,6 +118,12 @@ const Register = () => {
 							Already have an account
 						</p>
 					</Link>
+					<p
+						className="text-center py-3 font-semibold"
+						style={{ color: '#ff2f59' }}
+					>
+						{error}
+					</p>
 				</form>
 			</div>
 		</div>
